@@ -5,7 +5,7 @@ server:
 #environment enablement [dev, prod]
 spring:
     profiles:
-        active: dev
+        active: prod
 
 eureka:
     client:
