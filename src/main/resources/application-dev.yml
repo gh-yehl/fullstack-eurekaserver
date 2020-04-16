@@ -1,0 +1,3 @@
+#application log path
+logging:
+    path: d:/logs/logback

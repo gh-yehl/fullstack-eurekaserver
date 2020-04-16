@@ -1,0 +1,13 @@
+#default server port - dev
+server:
+    port: 8761
+
+#environment enablement [dev, prod]
+spring:
+    profiles:
+        active: dev
+
+eureka:
+    client:
+        register-with-eureka: false
+        fetch-registry: false
