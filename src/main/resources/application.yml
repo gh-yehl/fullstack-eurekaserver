@@ -1,6 +1,6 @@
 #default server port - dev
 server:
-    port: 8761
+    port: 8080
 
 #environment enablement [dev, prod]
 spring:
