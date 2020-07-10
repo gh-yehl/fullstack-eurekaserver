@@ -24,6 +24,6 @@ public class ServiceTester {
         LOGGER.info("testing service one - info");
         LOGGER.debug("testing service one - debug");
         LOGGER.error("testing service one - error");
-        return "Success! - Service One";
+        return "Success! - Service Two";
     }
 }
