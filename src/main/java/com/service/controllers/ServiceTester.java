@@ -37,7 +37,7 @@ public class ServiceTester {
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
-        return responseStr;
+        return "Success: "+ responseStr;
     }
 
     @RequestMapping(value = "/testExternal", method = RequestMethod.GET)
@@ -50,6 +50,6 @@ public class ServiceTester {
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
 
-        return responseStr;
+        return "Success: "+responseStr;
     }
 }
