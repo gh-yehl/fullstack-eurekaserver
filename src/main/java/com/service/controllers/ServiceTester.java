@@ -25,7 +25,7 @@ public class ServiceTester {
         LOGGER.info("testing service one - info");
         LOGGER.debug("testing service one - debug");
         LOGGER.error("testing service one - error");
-        return "Success! - Service Two";
+        return "Success! - You find my in my cozy Pod!!!";
     }
 
     @RequestMapping(value = "/testInternal", method = RequestMethod.GET)
