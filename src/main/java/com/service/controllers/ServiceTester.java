@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import redis.clients.jedis.Jedis;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -25,5 +26,30 @@ public class ServiceTester {
         LOGGER.debug("testing service one - debug");
         LOGGER.error("testing service one - error");
         return "Success! - Service Two";
+    }
+
+    @RequestMapping(value = "/testInternal", method = RequestMethod.GET)
+    public String testInternal() {
+        String responseStr = "";
+
+        Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
+        //Jedis jedis = new Jedis("www.curvelife.top", 6379);
+        responseStr = jedis.get("oneKey");
+        LOGGER.info("Connecting...");
+        LOGGER.info("ping: "+ jedis.ping());
+        return responseStr;
+    }
+
+    @RequestMapping(value = "/testExternal", method = RequestMethod.GET)
+    public String testExternal() {
+        String responseStr = "";
+
+        Jedis jedis = new Jedis("www.curvelife.top", 6379);
+        responseStr = jedis.get("oneKey");
+
+        LOGGER.info("Connecting...");
+        LOGGER.info("ping: "+ jedis.ping());
+
+        return responseStr;
     }
 }
