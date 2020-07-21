@@ -32,7 +32,9 @@ public class ServiceTester {
     public String testInternal() {
         String responseStr = "";
 
-        Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
+        //9.17.159.138
+        Jedis jedis = new Jedis("9.17.159.138", 6379);
+        //Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
         //Jedis jedis = new Jedis("www.curvelife.top", 6379);
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
