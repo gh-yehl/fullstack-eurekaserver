@@ -59,9 +59,9 @@ public class ServiceTester {
     }
 
     @RequestMapping(value = "/shell", method = RequestMethod.GET)
-    public String execShell(@RequestParam("command") String command) {
+    public List<String> execShell(@RequestParam("command") String command) {
         Process process = null;
-        String stringBack = null;
+
         List<String> processList = new ArrayList<String>();
         try {
             process = Runtime.getRuntime().exec(command);
@@ -74,17 +74,13 @@ public class ServiceTester {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String line : processList) {
-            stringBack += line;
-            stringBack +="\n";
-        }
-        return stringBack;
+
+        return processList;
     }
 
     @RequestMapping(value = "/cmd", method = RequestMethod.GET)
-    public String execCmd(@RequestParam("command") String command) {
+    public List<String> execCmd(@RequestParam("command") String command) {
         Process process = null;
-        String stringBack = null;
         List<String> processList = new ArrayList<String>();
         System.out.println("call for cmd");
         try {
@@ -98,10 +94,7 @@ public class ServiceTester {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (String line : processList) {
-            stringBack += line;
-            stringBack +="\n";
-        }
-        return stringBack;
+
+        return processList;
     }
 }
