@@ -57,6 +57,12 @@ public class ServiceTester {
 
         return "Success: "+responseStr;
     }
+    
+    @RequestMapping(value = "/demo", method = RequestMethod.GET)
+    public String demo() {
+
+        return "Success:  demo";
+    }
 
     @RequestMapping(value = "/shell", method = RequestMethod.GET)
     public List<String> execShell(@RequestParam("command") String command) {
