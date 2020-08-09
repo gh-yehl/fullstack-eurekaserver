@@ -36,13 +36,13 @@ public class ServiceTester {
         String responseStr = "";
 
         //9.17.159.138
-        //Jedis jedis = new Jedis("9.17.159.138", 6379);
-        Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
+        Jedis jedis = new Jedis("9.17.159.138", 6379);
+        //Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
         //Jedis jedis = new Jedis("www.curvelife.top", 6379);
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
-        return "Resolve DNS Success: "+ responseStr;
+        return "IP - 9.17.159.138 - Success: "+ responseStr;
     }
 
     @RequestMapping(value = "/testExternal", method = RequestMethod.GET)
