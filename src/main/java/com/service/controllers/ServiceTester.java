@@ -31,14 +31,20 @@ public class ServiceTester {
         return "Success! - You find my in my cozy Pod!!!";
     }
 
-    @RequestMapping(value = "/testInternal", method = RequestMethod.GET)
-    public String testInternal() {
+    @RequestMapping(value = "/testIP", method = RequestMethod.GET)
+    public String testIP() {
         String responseStr = "";
-
-        //9.17.159.138
         Jedis jedis = new Jedis("9.17.159.138", 6379);
-        //Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
-        //Jedis jedis = new Jedis("www.curvelife.top", 6379);
+        responseStr = jedis.get("oneKey");
+        LOGGER.info("Connecting...");
+        LOGGER.info("ping: "+ jedis.ping());
+        return "IP - 9.17.159.138 - Success: "+ responseStr;
+    }
+    
+    @RequestMapping(value = "/testDNS", method = RequestMethod.GET)
+    public String testDNS() {
+        String responseStr = "";
+        Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
