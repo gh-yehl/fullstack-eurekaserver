@@ -38,7 +38,7 @@ public class ServiceTester {
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
-        return "IP - 9.17.159.138 - Success: "+ responseStr;
+        return "Access 9.17.159.138 - Success: "+ responseStr;
     }
     
     @RequestMapping(value = "/testDNS", method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class ServiceTester {
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
-        return "IP - 9.17.159.138 - Success: "+ responseStr;
+        return "Access C03z0082.boulder.ibm.com- Success: "+ responseStr;
     }
 
     @RequestMapping(value = "/testExternal", method = RequestMethod.GET)
