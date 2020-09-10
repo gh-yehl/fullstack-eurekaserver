@@ -35,6 +35,7 @@ public class ServiceTester {
     public String testIP() {
         String responseStr = "";
         Jedis jedis = new Jedis("9.17.159.138", 6379);
+        jedis.auth("redis");
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
@@ -45,6 +46,7 @@ public class ServiceTester {
     public String testDNS() {
         String responseStr = "";
         Jedis jedis = new Jedis("C03z0082.boulder.ibm.com", 6379);
+        jedis.auth("redis");
         responseStr = jedis.get("oneKey");
         LOGGER.info("Connecting...");
         LOGGER.info("ping: "+ jedis.ping());
