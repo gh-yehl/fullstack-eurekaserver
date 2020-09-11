@@ -116,7 +116,7 @@ public class ServiceTester {
     public String testRedis() {
         String responseStr = "";
 
-        Jedis jedis = new Jedis("169.60.160.204", 32722);
+        Jedis jedis = new Jedis("172.21.107.29", 6379);
         jedis.set("oneKey","my set value for oneKey");
         responseStr = jedis.get("oneKey");
 
