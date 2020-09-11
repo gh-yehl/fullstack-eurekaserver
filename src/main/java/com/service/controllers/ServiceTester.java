@@ -111,4 +111,20 @@ public class ServiceTester {
 
         return processList;
     }
+    
+    @RequestMapping(value = "/testRedis", method = RequestMethod.GET)
+    public String testRedis() {
+        String responseStr = "";
+
+        Jedis jedis = new Jedis("169.60.160.204", 32722);
+        jedis.set("oneKey","my set value for oneKey");
+        responseStr = jedis.get("oneKey");
+
+        LOGGER.info("Connecting...");
+        LOGGER.info("ping: "+ jedis.ping());
+
+        return "Success: "+responseStr;
+    }
+    
+    
 }
