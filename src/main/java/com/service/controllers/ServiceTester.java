@@ -11,6 +11,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @CrossOrigin(maxAge = 3600)
 @RestController
 
@@ -25,10 +28,13 @@ public class ServiceTester {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceTester.class);
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test() {
-        LOGGER.info("testing service one - info");
-        LOGGER.debug("testing service one - debug");
-        LOGGER.error("testing service one - error");
-        return "Success! - You find my in my cozy Pod!!!";
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
+        Date date = new Date(System.currentTimeMillis());
+        
+        LOGGER.info(formatter.format(date) + "    testing service one - info");
+        LOGGER.debug(formatter.format(date) + "    testing service one - debug");
+        LOGGER.error(formatter.format(date) + "    testing service one - error");
+        return formatter.format(date) + "    Success! - You find my in my cozy Pod!!!";
     }
 
     @RequestMapping(value = "/testIP", method = RequestMethod.GET)
